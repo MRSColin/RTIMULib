@@ -61,14 +61,14 @@ bool RTIMUGD20HM303D::IMUInit()
 
     m_gyroSlaveAddr = m_settings->m_I2CSlaveAddress;
 
-    // work out accel/mag address
+    // work out accel/gyro address
 
-    if (m_settings->HALRead(LSM303D_ADDRESS0, LSM303D_WHO_AM_I, 1, &result, "")) {
+    if (m_settings->HALRead(ASM300LXH_GYROMAG_ADDRESS0 , LSM303D_WHO_AM_I, 1, &result, "")) {
         if (result == LSM303D_ID) {
-            m_accelCompassSlaveAddr = LSM303D_ADDRESS0;
+            m_accelCompassSlaveAddr = ASM300LXH_GYROMAG_ADDRESS0 ;
         }
     } else {
-        m_accelCompassSlaveAddr = LSM303D_ADDRESS1;
+        m_accelCompassSlaveAddr = ASM300LXH_GYROMAG_ADDRESS1;
     }
 
     setCalibrationData();

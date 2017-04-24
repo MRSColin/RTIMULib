@@ -43,6 +43,7 @@
 #define RTIMU_TYPE_GD20HM303DLHC            8                   // STM L3GD20H/LSM303DHLC (new Adafruit IMU)
 #define RTIMU_TYPE_BMX055                   9                   // Bosch BMX055
 #define RTIMU_TYPE_BNO055                   10                  // Bosch BNO055
+#define RTIMU_TYPE_ASM300LXH				11					// STM ASM330LXH (MRS Display)
 
 //----------------------------------------------------------
 //
@@ -1115,5 +1116,194 @@
 //  Power modes
 
 #define BNO055_PWR_MODE_NORMAL      0x00
+
+//----------------------------------------------------------
+//
+//  ASM300LXH
+
+//  I2C Slave Addresses
+
+
+
+#define ASM300LXH_GYROMAG_ADDRESS0       0x6a
+#define ASM300LXH_GYROMAG_ADDRESS1       0x6b
+//Not needed?
+#define ASM300LXH_GYRO_ID             0xd4
+
+// TO DO : Correct these for MAG3110
+#define MAG3110_LMAG_ADDRESS0   0x1e
+#define MAG3110_LMAG_ADDRESS1   0x1d
+#define MAG3110_MAG_ID         0x49
+// END TO DO
+
+//  ASM300LXH Register map
+
+
+//Done
+#define ASM300LXH_GYRO_WHO_AM_I       0x0f
+
+#define ASM300LXH_GYRO_CTRL1          0x20
+#define ASM300LXH_GYRO_CTRL2          0x21
+#define ASM300LXH_GYRO_CTRL3          0x22
+#define ASM300LXH_GYRO_CTRL4          0x23
+#define ASM300LXH_GYRO_CTRL5          0x24
+#define ASM300LXH_GYRO_OUT_TEMP       0x26
+#define ASM300LXH_GYRO_STATUS         0x27
+#define ASM300LXH_GYRO_OUT_X_L        0x28
+#define ASM300LXH_GYRO_OUT_X_H        0x29
+#define ASM300LXH_GYRO_OUT_Y_L        0x2a
+#define ASM300LXH_GYRO_OUT_Y_H        0x2b
+#define ASM300LXH_GYRO_OUT_Z_L        0x2c
+#define ASM300LXH_GYRO_OUT_Z_H        0x2d
+#define ASM300LXH_GYRO_FIFO_CTRL      0x2e
+#define ASM300LXH_GYRO_FIFO_SRC       0x2f
+#define ASM300LXH_GYRO_IG_CFG         0x30
+#define ASM300LXH_GYRO_IG_SRC         0x31
+#define ASM300LXH_GYRO_IG_THS_XH      0x32
+#define ASM300LXH_GYRO_IG_THS_XL      0x33
+#define ASM300LXH_GYRO_IG_THS_YH      0x34
+#define ASM300LXH_GYRO_IG_THS_YL      0x35
+#define ASM300LXH_GYRO_IG_THS_ZH      0x36
+#define ASM300LXH_GYRO_IG_THS_ZL      0x37
+#define ASM300LXH_GYRO_IG_DURATION    0x38
+
+//  Gyro sample rate defines
+
+#define ASM300LXH_GYRO_SAMPLERATE_95  0
+#define ASM300LXH_GYRO_SAMPLERATE_190 1
+#define ASM300LXH_GYRO_SAMPLERATE_380 2
+#define ASM300LXH_GYRO_SAMPLERATE_760 3
+
+//  Gyro banwidth defines
+
+#define ASM300LXH_GYRO_BANDWIDTH_0    0
+#define ASM300LXH_GYRO_BANDWIDTH_1    1
+#define ASM300LXH_GYRO_BANDWIDTH_2    2
+#define ASM300LXH_GYRO_BANDWIDTH_3    3
+
+//  Gyro FSR defines
+
+#define ASM300LXH_GYRO_FSR_250        0
+#define ASM300LXH_GYRO_FSR_500        1
+#define ASM300LXH_GYRO_FSR_2000       2
+
+//  Gyro high pass filter defines
+
+#define ASM300LXH_GYRO_HPF_0          0
+#define ASM300LXH_GYRO_HPF_1          1
+#define ASM300LXH_GYRO_HPF_2          2
+#define ASM300LXH_GYRO_HPF_3          3
+#define ASM300LXH_GYRO_HPF_4          4
+#define ASM300LXH_GYRO_HPF_5          5
+#define ASM300LXH_GYRO_HPF_6          6
+#define ASM300LXH_GYRO_HPF_7          7
+#define ASM300LXH_GYRO_HPF_8          8
+#define ASM300LXH_GYRO_HPF_9          9
+
+//  Accel/Mag Register Map
+// NOTE: No mag! Delete!
+
+#define ASM300LXH_TEMP_OUT_L      0x05
+#define ASM300LXH_TEMP_OUT_H      0x06
+#define ASM300LXH_STATUS_M        0x07
+#define ASM300LXH_OUT_X_L_M       0x08
+#define ASM300LXH_OUT_X_H_M       0x09
+#define ASM300LXH_OUT_Y_L_M       0x0a
+#define ASM300LXH_OUT_Y_H_M       0x0b
+#define ASM300LXH_OUT_Z_L_M       0x0c
+#define ASM300LXH_OUT_Z_H_M       0x0d
+#define ASM300LXH_WHO_AM_I        0x0f
+#define ASM300LXH_INT_CTRL_M      0x12
+#define ASM300LXH_INT_SRC_M       0x13
+#define ASM300LXH_INT_THS_L_M     0x14
+#define ASM300LXH_INT_THS_H_M     0x15
+#define ASM300LXH_OFFSET_X_L_M    0x16
+#define ASM300LXH_OFFSET_X_H_M    0x17
+#define ASM300LXH_OFFSET_Y_L_M    0x18
+#define ASM300LXH_OFFSET_Y_H_M    0x19
+#define ASM300LXH_OFFSET_Z_L_M    0x1a
+#define ASM300LXH_OFFSET_Z_H_M    0x1b
+#define ASM300LXH_REFERENCE_X     0x1c
+#define ASM300LXH_REFERENCE_Y     0x1d
+#define ASM300LXH_REFERENCE_Z     0x1e
+#define ASM300LXH_CTRL0           0x1f
+#define ASM300LXH_CTRL1           0x20
+#define ASM300LXH_CTRL2           0x21
+#define ASM300LXH_CTRL3           0x22
+#define ASM300LXH_CTRL4           0x23
+#define ASM300LXH_CTRL5           0x24
+#define ASM300LXH_CTRL6           0x25
+#define ASM300LXH_CTRL7           0x26
+#define ASM300LXH_STATUS_A        0x27
+#define ASM300LXH_OUT_X_L_A       0x28
+#define ASM300LXH_OUT_X_H_A       0x29
+#define ASM300LXH_OUT_Y_L_A       0x2a
+#define ASM300LXH_OUT_Y_H_A       0x2b
+#define ASM300LXH_OUT_Z_L_A       0x2c
+#define ASM300LXH_OUT_Z_H_A       0x2d
+#define ASM300LXH_FIFO_CTRL       0x2e
+#define ASM300LXH_FIFO_SRC        0x2f
+#define ASM300LXH_IG_CFG1         0x30
+#define ASM300LXH_IG_SRC1         0x31
+#define ASM300LXH_IG_THS1         0x32
+#define ASM300LXH_IG_DUR1         0x33
+#define ASM300LXH_IG_CFG2         0x34
+#define ASM300LXH_IG_SRC2         0x35
+#define ASM300LXH_IG_THS2         0x36
+#define ASM300LXH_IG_DUR2         0x37
+#define ASM300LXH_CLICK_CFG       0x38
+#define ASM300LXH_CLICK_SRC       0x39
+#define ASM300LXH_CLICK_THS       0x3a
+#define ASM300LXH_TIME_LIMIT      0x3b
+#define ASM300LXH_TIME_LATENCY    0x3c
+#define ASM300LXH_TIME_WINDOW     0x3d
+#define ASM300LXH_ACT_THIS        0x3e
+#define ASM300LXH_ACT_DUR         0x3f
+
+//  Accel sample rate defines
+
+#define ASM300LXH_ACCEL_SAMPLERATE_3_125 1
+#define ASM300LXH_ACCEL_SAMPLERATE_6_25 2
+#define ASM300LXH_ACCEL_SAMPLERATE_12_5 3
+#define ASM300LXH_ACCEL_SAMPLERATE_25   4
+#define ASM300LXH_ACCEL_SAMPLERATE_50   5
+#define ASM300LXH_ACCEL_SAMPLERATE_100  6
+#define ASM300LXH_ACCEL_SAMPLERATE_200  7
+#define ASM300LXH_ACCEL_SAMPLERATE_400  8
+#define ASM300LXH_ACCEL_SAMPLERATE_800  9
+#define ASM300LXH_ACCEL_SAMPLERATE_1600 10
+
+//  Accel FSR
+
+#define ASM300LXH_ACCEL_FSR_2     0
+#define ASM300LXH_ACCEL_FSR_4     1
+#define ASM300LXH_ACCEL_FSR_6     2
+#define ASM300LXH_ACCEL_FSR_8     3
+#define ASM300LXH_ACCEL_FSR_16    4
+
+//  Accel filter bandwidth
+
+#define ASM300LXH_ACCEL_LPF_773   0
+#define ASM300LXH_ACCEL_LPF_194   1
+#define ASM300LXH_ACCEL_LPF_362   2
+#define ASM300LXH_ACCEL_LPF_50    3
+
+//  Compass sample rate defines
+// NOTE: NO MAG!
+
+#define ASM300LXH_COMPASS_SAMPLERATE_3_125    0
+#define ASM300LXH_COMPASS_SAMPLERATE_6_25     1
+#define ASM300LXH_COMPASS_SAMPLERATE_12_5     2
+#define ASM300LXH_COMPASS_SAMPLERATE_25       3
+#define ASM300LXH_COMPASS_SAMPLERATE_50       4
+#define ASM300LXH_COMPASS_SAMPLERATE_100      5
+
+//  Compass FSR
+// NOTE! NO MAG!
+
+#define ASM300LXH_COMPASS_FSR_2   0
+#define ASM300LXH_COMPASS_FSR_4   1
+#define ASM300LXH_COMPASS_FSR_8   2
+#define ASM300LXH_COMPASS_FSR_12  3
 
 #endif // _RTIMUDEFS_H
